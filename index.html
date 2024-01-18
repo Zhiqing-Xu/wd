@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- font awesome cdn -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        />
+
+        <!-- external css / stylesheet -->
+        <link rel="stylesheet" href="./assets_music/css/style.css" />
+
+        <!-- linking favicon -->
+        <link
+            rel="shortcut icon"
+            href="./assets_music/img/favicon.png"
+            type="image/png"
+        />
+    </head>
+
+
+    
+    <body>
+
+        <div class="container">
+            <h1><center> <font size="20"> 温度 </font> </center> </h1>
+
+            <div class="music-container play">
+
+                <div class="music-info">
+                    <h4 id="title">Ukulele</h4>
+
+                    <div class="progress-container">
+                        <div class="progress"></div>
+                    </div>
+                </div>
+
+                <!-- audio / music -->
+                <audio src="./assets_music/music/mascara.mp3" id="audio"></audio>
+
+                <!-- thumbnail -->
+                <div class="img-container">
+                    <img
+                        src="./assets_music/thumbnail/general.png"
+                        alt="music-cover"
+                        id="cover"
+                    />
+                </div>
+
+                <!-- navigation -->
+                <div class="navigation">
+                    <div class="buttons-container">
+                        <button id="prev" class="action-btn">
+                            <i class="fas fa-backward"></i>
+                        </button>
+                        <button id="play" class="action-btn action-btn-big">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button id="next" class="action-btn">
+                            <i class="fas fa-forward"></i>
+                        </button>
+                    </div>
+                  
+                    <div class="volume-container">
+                        <i class="fas fa-volume-up"></i>
+                        <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
+
+                        <button id="loop" class="action-btn">
+                            <i class="fas fa-sync"></i>
+                        </button>
+
+                    </div>
+
+                  </div>  
+            </div>
+
+            <!-- playlist-container -->
+            <div class="playlist-container">
+                <h3>Playlist</h3>
+                <ul class="playlist">
+                    <!-- Playlist items will be added dynamically using JavaScript -->
+                </ul>
+            </div>
+
+        </div>
+
+        
+        <!-- external js / script -->
+        <script src="./assets_music/js/script.js"></script>
+
+
+        <!-- Bubbly-bg library -->
+        <script src="https://cdn.jsdelivr.net/npm/bubbly-bg@1.0.0/dist/bubbly-bg.js"></script>
+        <script>
+            bubbly({
+                colorStart: '#54ffff',
+                colorStop: '#5457ff',
+                blur: 1,
+                compose: 'source-over',
+                bubbleFunc:() => `hsla(${Math.random() * 9999}, 100%, 50%, .4)`
+            });
+        </script>
+
+
+        
+    </body>
+</html>

@@ -1,0 +1,301 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  height: 100vh;
+  /* flexBox using */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Lato", sans-serif;
+  margin: 0;
+}
+
+
+.player-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3px 0;
+}
+
+.music-container {
+  background-color: rgba(0, 140, 255, 0.4);
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  box-shadow: 0 20px 20px 0 rgba(0, 107, 169, 0.6);
+
+  /* flexBox using */
+  display: flex;
+  padding: 15px 40px;
+  position: relative;
+  margin: 80px 0;
+  z-index: 10;
+}
+
+.img-container {
+  position: relative;
+  width: 600px;
+
+}
+
+.img-container::after {
+  content: " ";
+  background-color: #FFFFFF;
+  opacity: .0;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  position: absolute;
+  bottom: 83%; 
+  left: 9%;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, 50%);
+  -webkit-transform: translate(-50%, 50%);
+  -moz-transform: translate(-50%, 50%);
+  -ms-transform: translate(-50%, 50%);
+  -o-transform: translate(-50%, 50%);
+}
+
+.img-container img {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  object-fit: cover;
+  height: 120px;
+  width: 120px;
+  position: absolute;
+  bottom: 10px;
+  left: -15px;
+  animation: rotate 3s linear infinite;
+  -webkit-animation: rotate 3s linear infinite;
+  animation-play-state: paused;
+}
+
+.music-container.play .img-container img {
+  animation-play-state: running;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+  }
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  margin-right: -40px;
+}
+
+.action-btn {
+  background-color: transparent;
+  border: 0;
+  /* color: #dfdbdf; */
+  color: black;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 20px;
+}
+.action-btn.action-btn-big {
+  /* color: #cdc2d0; */
+  color: black;
+  font-size: 30px;
+}
+.action-btn:focus {
+  outline: 0;
+}
+
+.music-info {
+  background-color: rgba(95, 215, 255, 0.5);
+  border-radius: 15px 15px 0 0;
+  -webkit-border-radius: 15px 15px 0 0;
+  -moz-border-radius: 15px 15px 0 0;
+  -ms-border-radius: 15px 15px 0 0;
+  -o-border-radius: 15px 15px 0 0;
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: calc(100% - 40px);
+  padding: 10px 10px 10px 150px;
+  opacity: 0;
+  transform: translateY(0%);
+  -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  -o-transform: translateY(0%);
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  -webkit-transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  -moz-transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  -ms-transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  -o-transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  z-index: 0;
+}
+
+.music-container.play .music-info {
+  opacity: 1;
+  transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+}
+
+.music-info h4 {
+  margin: 0;
+  margin-left: 5px;
+}
+
+.progress-container {
+  background: rgb(132, 235, 255);
+  cursor: pointer;
+  margin: 10px 0;
+  height: 6px;
+  width: 96%;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  margin-left: 5px;
+}
+
+.progress {
+  background-color: rgb(255, 167, 167);
+  height: 100%;
+  width: 0%;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  transition: width 0.1s linear;
+  -webkit-transition: width 0.1s linear;
+  -moz-transition: width 0.1s linear;
+  -ms-transition: width 0.1s linear;
+  -o-transition: width 0.1s linear;
+}
+
+
+/* Add these styles to your style.css */
+.playlist-container {
+  width: 100%; /* Add this line */
+  background-color: rgba(64, 102, 255, 0.3);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 20px 20px 0 rgba(255, 137, 137, 0.6);
+  margin-top: 0px;
+  margin-bottom: 50px;
+  display: none;
+}
+
+.playlist-container h3 {
+  margin: 0 0 10px;
+}
+
+.playlist {
+  width: 100%; /* Add this line */
+  max-height: 2000px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding: 10px;
+}
+
+.playlist li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.playlist li:last-child {
+  border-bottom: none;
+}
+
+.playlist li.active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.song-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.container {
+  width: 95%; /* You can adjust this value as per your preference */
+  max-width: 800px; /* You can adjust this value as per your preference */
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-left: -35px;
+  margin-right: -60px;
+}
+
+.volume-container i {
+  margin-right: 10px;
+  margin-left : 20px;
+  margin-top: 0px;
+
+}
+
+.volume-container input[type="range"] {
+  width: 100px;
+  margin-top: 0px;
+  background-color: black;
+  margin-right: -20px;
+
+}
+
+
+.navigation {
+  flex-direction: column;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -5px;
+}
+
+
+.action-btn.active {
+  color: lightskyblue;
+}
+
+
+
