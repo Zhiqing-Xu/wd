@@ -12,6 +12,9 @@ const playlist = document.querySelector(".playlist");
 const volumeSlider = document.querySelector("#volume");
 const loopBtn = document.querySelector("#loop");
 
+const currentTimeEl = document.querySelector("#current-time");
+const totalDurationEl = document.querySelector("#total-duration");
+
 
 
 // song titles
@@ -49,16 +52,14 @@ loadSong(songs[songIndex]);
 createPlaylistItems();
 
 
-// update song details
 function loadSong(song) {
     title.innerText = song;
-
     cover.src = "assets_music/thumbnail/general.png";
-
-
     audio.src = `assets_music/music/${song}.mp3`;
-    
+    currentTimeEl.textContent = '0:00';
+    totalDurationEl.textContent = '0:00';
 }
+
 
 
 function tryPlaySong() {
@@ -128,10 +129,10 @@ function createPlaylistItems() {
         songTitle.textContent = song;
 
         // Create the download link
-        const downloadLink = document.createElement("a");
-        downloadLink.href = `assets_music/music/${song}.mp3`;
+        const downloadLink    = document.createElement("a");
+        downloadLink.href     = `assets_music/music/${song}.mp3`;
         downloadLink.download = `${song}.mp3`;
-        downloadLink.title = "Download " + song;
+        downloadLink.title    = "Download " + song;
  
         // Stop the click event from propagating to the li element
         downloadLink.addEventListener("click", (e) => {
@@ -238,14 +239,27 @@ function initializePlayer() {
 
 // update audio time progress
 function updateProgress(e) {
-    /* console.log(e.srcElement);
-        console.log(e.srcElement.currentTime);
-        console.log(e.srcElement.duration); */
-
     const { duration, currentTime } = e.srcElement;
     const progressPercent = (currentTime / duration) * 100;
     progress.style.width = `${progressPercent}%`;
+
+    // Update current time text
+    currentTimeEl.textContent = formatTime(currentTime);
+
+    // Update total duration text only once
+    if (totalDurationEl.textContent === '0:00' && duration) {
+        totalDurationEl.textContent = formatTime(duration);
+    }
 }
+
+
+function formatTime(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
+
+
 
 // set audio time progress
 function setProgress(e) {
